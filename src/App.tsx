@@ -15,6 +15,7 @@ import NotFound from "./pages/NotFound";
 import NotificationLogs from "./pages/admin/NotificationLogs";
 import AdminLogin from "./pages/admin/Login";
 import Admins from "./pages/admin/Admins";
+import SiteTitle from "./components/SiteTitle";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
             element={
               <ProtectedRoute>
                 <DashboardLayout>
+                  <SiteTitle title="Admin Dashboard" />
                   <Dashboard />
                 </DashboardLayout>
               </ProtectedRoute>
@@ -42,6 +44,7 @@ const App = () => (
             element={
               <ProtectedRoute>
                 <DashboardLayout>
+                  <SiteTitle title="Admin Users" />
                   <Admins />
                 </DashboardLayout>
               </ProtectedRoute>
@@ -52,6 +55,7 @@ const App = () => (
             element={
               <ProtectedRoute>
                 <DashboardLayout>
+                  <SiteTitle title="Users" />
                   <Users />
                 </DashboardLayout>
               </ProtectedRoute>
@@ -62,17 +66,19 @@ const App = () => (
             element={
               <ProtectedRoute>
                 <DashboardLayout>
+                  <SiteTitle title="Transactions" />
                   <Transactions />
                 </DashboardLayout>
               </ProtectedRoute>
             }
           />
-          
+
           <Route
             path="/admin/notification-logs"
             element={
               <ProtectedRoute>
                 <DashboardLayout>
+                  <SiteTitle title="Notification Logs" />
                   <NotificationLogs />
                 </DashboardLayout>
               </ProtectedRoute>
@@ -83,6 +89,7 @@ const App = () => (
             element={
               <ProtectedRoute>
                 <DashboardLayout>
+                  <SiteTitle title="Analytics" />
                   <Analytics />
                 </DashboardLayout>
               </ProtectedRoute>
@@ -93,6 +100,7 @@ const App = () => (
             element={
               <ProtectedRoute>
                 <DashboardLayout>
+                  <SiteTitle title="Reports" />
                   <Reports />
                 </DashboardLayout>
               </ProtectedRoute>
@@ -103,12 +111,21 @@ const App = () => (
             element={
               <ProtectedRoute>
                 <DashboardLayout>
+                  <SiteTitle title="Profile" />
                   <Profile />
                 </DashboardLayout>
               </ProtectedRoute>
             }
           />
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path="*"
+            element={
+              <>
+                <NotFound />
+                <SiteTitle title="Page Not Found" />
+              </>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
