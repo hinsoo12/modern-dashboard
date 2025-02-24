@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -11,7 +10,7 @@ import { Lock, Mail } from "lucide-react";
 const AdminLogin = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,7 +19,7 @@ const AdminLogin = () => {
     setIsLoading(true);
 
     // Mock login - replace with actual authentication
-    if (email === "admin@example.com" && password === "admin123") {
+    if (username === "admin" && password === "admin") {
       localStorage.setItem("adminAuth", "true");
       toast({
         title: "Login successful",
@@ -53,15 +52,15 @@ const AdminLogin = () => {
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email address</Label>
+              <Label htmlFor="username">Username</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                 <Input
-                  id="email"
-                  type="email"
-                  placeholder="admin@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  id="username"
+                  type="text"
+                  placeholder="enter your username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   className="pl-10"
                   required
                 />
@@ -93,6 +92,13 @@ const AdminLogin = () => {
             {isLoading ? "Signing in..." : "Sign in"}
           </Button>
         </form>
+
+        {/* Display Login Details */}
+        <div className="mt-6 text-center text-sm text-muted-foreground">
+          <p>For testing purposes:</p>
+          <p>Username: <strong>admin</strong></p>
+          <p>Password: <strong>admin</strong></p>
+        </div>
       </Card>
     </div>
   );
